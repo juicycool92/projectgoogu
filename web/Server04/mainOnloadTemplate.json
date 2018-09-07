@@ -1,0 +1,58 @@
+
+{
+"nearTradeArr": [
+		{
+			"lon": "x좌표",
+			"lat": "y좌표",
+			"tradeItem":"김치워리어",
+			"tradePrice":"99만원",
+			"tradePoint":{ "address":"출발지", "lon" : "x좌표" , "lat": "y좌표" },
+			"tradeArrival":{ "address":"도착지", "lon" : "x좌표" , "lat": "y좌표" },
+			"tradeUniqueId":"해당 DB의 키값"	
+		},
+		{
+			"lon": "x좌표",
+			"lat": "y좌표",
+			"tradeItem":"김치워리어",
+			"tradePrice":"99만원",
+			"tradePoint":{ "address":"출발지", "lon" : "x좌표" , "lat": "y좌표" },
+			"tradeArrival":{ "address":"도착지", "lon" : "x좌표" , "lat": "y좌표" },
+			"tradeUniqueId":"해당 DB의 키값"	
+		}
+	],
+"nearTradeSize" :{"zoom" : "지도 확대 수준" , "total": "범위 내 토탈 거래건수"},
+"myTradeArr" : [
+		{
+			"curTradeUniqueId":"현제 거래 DB 키값",
+			"curTradeDriverId":"현제 계약건의 드라이버 DB 키값",
+			"trade" : {
+				"curTradeItem": "현제 거래 아이탬 이름",
+				"curTradeStatus":	"현제 거래 상태"
+			},
+			"driver" : {
+				"DriverPic": "드라이버 사진",
+				"DriverTrus": "드라이버 신용점수",
+				"DriverContext": "드라이버 자기소개",
+				"DriverPhoneNum": "드라이버 안심번호",
+				"DriverLocation":{ "lon": "x좌표" , "lat" : "y좌표" }
+			}
+		},
+		{
+			"curTradeUniqueId":"현제 거래 DB 키값",
+			"curTradeDriverId":"현제 계약건의 드라이버 DB 키값",
+			"trade" : {
+				"curTradeItem": "현제 거래 아이탬 이름",
+				"curTradeStatus":	"현제 거래 상태"
+			},
+			"driver" : {
+				"DriverPic": "드라이버 사진",
+				"DriverTrus": "드라이버 신용점수",
+				"DriverContext": "드라이버 자기소개",
+				"DriverPhoneNum": "드라이버 안심번호",
+				"DriverLocation":{ "lon": "x좌표" , "lat" : "y좌표" }
+			}
+		}
+	],
+"myTradeSize" : "내 거래중인 계약 건수"
+}
+

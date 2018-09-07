@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en">
+
+<head>
+<!-- header -->
+<% include head.ejs %>
+</head>
+
+
+<body role="document">
+	<!-- Fixed navbar -->
+	<%- include('navBar.ejs',{login:login,userId:userId}) %>
+
+
+	<div class="container theme-showcase" role="main">
+
+	<!--  이곳부터 작업이 시작됩니당.  -->
+		
+	<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6b40b52d3e57a3ff0b7867e0bfb88094"></script>
+	<!-- 지도API 연동을 위한거. -->
+
+	<div class="map_wrap">
+    	<div id="map" style="width:95%;height:100%;position:relative;overflow:hidden;"></div> 
+    	<!-- 지도 확대, 축소 컨트롤 div 입니다 -->
+    	<div class="custom_zoomcontrol radius_border" id="driverList">   
+    	</div>
+	</div>
+
+
+	<script>
+
+		
+	$(document).ready(function(){
+		
+		$("#btnAddTrade").click(function(){
+			 window.open("./trade", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no");
+		});//메인페이지에서 거래등록을 눌렀을때 뜨는창, trade/tradeForm.ejs를 불러온다.
+		
+	    $(function(){
+	    	getCurLoc(function(location){
+	    		var zoom = map.getLevel();
+	    		$.ajax({
+					type:"POST",
+					url:"http://localhost:8080/",
+					data:JSON.stringify({"location" : location, "userId":"<%=userId%>", "zoom":zoom} ),
+					contentType:'application/json',
+					success:function(requestJson){
+						var nearTradeArray = JSON.parse(requestJson);
+						
+						for(var i = 0 ; i < nearTradeArray.nearTradeArr.length ; i ++){
+							var result = [];
+							result.push(nearTradeArray.nearTradeArr[i].itemName);
+							result.push(nearTradeArray.nearTradeArr[i].itemPrice);
+							result.push(nearTradeArray.nearTradeArr[i].itemArrPlace);
+							result.push(nearTradeArray.nearTradeArr[i].itemDepTime);
+							result.push(nearTradeArray.nearTradeArr[i].tradeNum);
+							createMarker(nearTradeArray.nearTradeArr[i].lat, nearTradeArray.nearTradeArr[i].lon, nearTradeArray.nearTradeArr[i].itemName,result[0],result[1],result[2],result[3],result[4]);
+						}//내 주위의 거래를 출력하는 부분.
+						
+						for(var i = 0 ; i < nearTradeArray.driverArray.length ; i ++){
+							driverArray.push(new driverInfo(nearTradeArray.driverArray[i].driverLat,nearTradeArray.driverArray[i].driverLon,nearTradeArray.driverArray[i].driverId,nearTradeArray.driverArray[i].tradeNum,nearTradeArray.driverArray[i].tradeName));
+						}//드라이버들의 객체를 생성하고, 배열에 담는 부분
+						//console.log(driverArray.length);
+					},
+					error:function(e){
+						//alert(e.responseText);
+					}
+				});
+	    	});
+	    });
+	    
+	    // 아래 jquery는 내가 왜 만든지 파악중..//
+	    $(document).on("click","#sibal",function(){
+	    	alert('a');
+	    });
+	    $("#tradeArray#sibal").click(function(){
+			alert('a');
+		});
+		///////////////////////////////
+	});
+	</script>
+		
+    <script>
+    function getMyTradeDetail(tradeNum){
+    	console.log(tradeNum);
+    	$("#tradeArray").append('sibal');
+    }//이거 아직 쓰는 함수인지 모르겠음
+    
+    function trackDriver(driverIds){
+    	for(var i = 0 ; i < driverArray.length ; i ++){
+    		if(driverArray[i].driverId === driverIds){
+    			map.setCenter(driverArray[i].locPositions);
+    			loadDriverInfo(driverIds);
+    			return;
+    		}
+    	}
+    }// 드라이버 위치로 지도 제설정 함수, 배열을 검색하면서, 선택한 드라이버와 일치하는 마커를 우선 찾고, 발견시 그 객체 위치로 불러와진다.
+    
+    function driverInfo(driverLat, driverLon,driverId,tradeNum,tradeName){
+    	if(!driverLat || !driverLon || !driverId || !tradeNum || !tradeName){
+    		return; 
+    	}//예외처리
+    	for(var i in driverArray){
+    		if(driverArray[i].driverId === driverId){
+    			return;
+    		}
+    	} //중복검사. 중복이면 아래 추가작업이 없떠
+    	
+		var driverLat = driverLat;
+		var driverLon = driverLon;
+		var driverId =driverId;
+		var tradeNum = tradeNum;
+		var tradeName = tradeName;
+		var locPositions = new daum.maps.LatLng(driverLat, driverLon);
+		var marker = new daum.maps.Marker({  
+  	        map: map, 
+  	        position: locPositions
+  	    }); //지도위에 올릴 드라이버 정보 가공
+		var markerImage = new daum.maps.MarkerImage(
+    		'https://www.phpschool.com/skin/blue/images/common/img_parkhp.png',
+    		new daum.maps.Size(30,30), new daum.maps.Point(13,34));
+    	marker.setImage(markerImage);
+    	//드라이버 사진을 만드는 부분, 현제는 이미지는 미구현이라 테스트 이미지가 들어가있다.
+    	var driverContent = '<span><img src ="https://www.phpschool.com/skin/blue/images/common/img_parkhp.png" onclick="trackDriver(\''+driverId+'\')"></span>';
+    	daum.maps.event.addListener(marker, 'click',function(){
+    		map.setCenter(locPositions);
+    		loadDriverInfo(driverId);
+    	}); //지도에서 드라이버 목록을 눌렀을때 이벤트 발생, 클릭한 정보가 맵 중앙에 표시되고, 드라이버 개인정보를 부른다.
+    	$('#driverList').append(driverContent); // 맵 우측의 테두리에 드라이버를 추가한다. 이 또한 클릭시 드라이버 위치로 지도가 제설정 된다	
+    	return {driverLat,driverLon,driverId,tradeNum,tradeName,locPositions,marker,markerImage,driverContent};	
+    }//드라이버 한명의 정보를 가공하는 함수, 중복이면 가공하지 않으며, 가공된 드라이버정보는 return되어 이 함수안에 있는 객체들을 저장하는 배열에 저장된다.
+    
+    function loadDriverInfo(driverId){
+    	$('#driverInfo_picture').empty();
+		$('#driverInfo_grade').empty();
+		$('#driverInfo_chat').empty(); // 미구현
+		$('#driverInfo_dial').empty(); // 미구현
+		$('#driverInfo_memo').empty();
+		$("#driverInfo_window").css('visibility','visible');
+		$(function(){
+			 $.ajax({
+				type:"POST",
+				url:"http://localhost:8080/driverInfo",
+				data:JSON.stringify({"driverId" : driverId}),
+				contentType:'application/json',
+				success:function(requestJson){
+					var results = JSON.parse(requestJson);
+					$('#driverInfo_picture').attr("src",results.driverPhoto); //아직 미구현
+					$('#driverInfo_grade').append(results.driverRank); // 드라이버 신용등급
+					$('#driverInfo_memo').append(results.driverMemo); // 드라이버 메모사항
+				},
+				error:function(e){
+					console.log(e);
+				}
+			});
+		});
+    } // 드라이버 개인정보를 노출시키기 위한 함수, 드라이버 인포는 제사용을 하기 때문에, 우선   empty()로 내용물은 비운뒤, ajax로 드라이버 인적사항을 불러온다.
+    
+    function createMyMarker(mylat,mylon){
+    	var locPositions = new daum.maps.LatLng(mylat, mylon);
+    	var marker = new daum.maps.Marker({  
+  	        map: map, 
+  	        position: locPositions
+  	    }); 
+    	map.setCenter(locPositions);  
+	   
+    	var infowindow = new daum.maps.InfoWindow({
+	        content : "현위치",
+	        removable : false
+	    });
+	    infowindow.open(map, marker);
+    } // 본인의 위치를 지도에 뿌리는  함수.
+    
+    function createMarker(lat,lon,context,result1,result2,result3,result4,result5){
+    	var locPosition = new daum.maps.LatLng(lat, lon);// 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
+    	createContents(result1,result2,result3,result4,result5,locPosition);	
+    }//거래정보를 마커로 찍는 함수
+    
+    function calcCurLoc(callback){
+    	if (navigator.geolocation) {
+            console.log('hello fucker');
+    	   	navigator.geolocation.getCurrentPosition(function(position) {
+                    console.log('hello fucker2');
+    	       	callback(position.coords.latitude,position.coords.longitude);
+    		});
+   		} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
+   			alert('해당 웹 브라우저는 위치를 불러 올 수 없습니다');
+   			callback(33.450701,126.570667);
+    	}
+    } // 현제 좌표를 뽑아내는 함수, 성공시 lat,lon값을 반환함.
+    
+    function getCurLoc(callback){
+    	calcCurLoc(function(lat,lon){
+    		createMyMarker(lat,lon);
+    		callback({"lat":lat,"lon":lon});
+    	});
+    } // 현제 좌표를 getter
+    
+    function createContents(result1,result2,result3,result4,result5,locPositions){
+    	var marker = new daum.maps.Marker({  
+  	        map: map, 
+  	        position: locPositions
+  	    });  
+    	
+    	var coverlay = new daum.maps.CustomOverlay({
+    	    content: null,
+    	    map: map,	    
+    	    position: locPositions       
+    	});
+    	
+    	coverlay.setVisible(false);
+    	var content ='<div class="testDiv" style="background-color:white"><table border = 1><tr class="testTr"><td class="testTd">'+result1+'</td><td class="testTd">'+result2+'</td></tr><tr class="testTr"><td class="testTd">'+result3+'</td><td class="testTd">'+result4+'</td></tr></table><button style="height: 20px; width: 50px" onclick="openTradeList('+result5+')"></button><button onclick=""></button></div>';
+    	coverlay.setContent(content);    	
+    	daum.maps.event.addListener(marker, 'click',makeCustomOverlay(coverlay));
+    }//지도위에 표시된 거래를 만드는 함수, 이벤트 리스너를 연결해 놓아, 거래 마커를 누르면, 해당 거래에 대한 정보가 나옴
+    
+    function makeCustomOverlay(overlay){
+    	if(overlay.getVisible()){
+    		return function() {
+    			overlay.setVisible(false);
+    		};
+    	}
+    	return function() {
+    		overlay.setVisible(true);
+    	};
+    }//내가 이걸 쓰나? 쓰는듯..왜쓰지
+    function openTradeList(listNum) { 
+		var formList = document.tradeForm;
+		var url = "./tradeList";
+		window.open("","popupView","option");
+		formList.action = url;
+		formList.method="POST";
+		formList.target = "popupView";
+		formList.userName.value = "<%=userId%>";
+		
+		formList.tradeNum.value = listNum;
+		console.log(formList.tradeNum);
+		formList.submit();
+    }//지도에 있는 거래의 상세보기를 눌렀을때 호출되는 함수.
+    
+    driverArray = []; //드라이버 목록을 담기위해 만든 전역변수..지역변수로 수정 가능할까?
+    var request = new XMLHttpRequest();//지금 코드에서 사용중인지 모르겠음
+    var lat,lon; // 본인 좌표를 저장하는 변수
+	var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    	mapOption = { 
+   	    	center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표. 최초 로딩시 표시하는 부분.
+  	  		level: 5 // 지도의 확대 레벨 
+    	}; 
+
+	var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	// 지도에 마커와 인포윈도우를 표시하는 함수입니다
+	function displayMarker(locPositions, message) {
+
+	    // 마커를 생성합니다
+	    var marker = new daum.maps.Marker({  
+	        map: map, 
+	        position: locPositions
+	    }); 
+	    
+	    var iwContent = message, // 인포윈도우에 표시할 내용
+	        iwRemoveable = true;
+
+	    // 인포윈도우를 생성합니다
+	    var infowindow = new daum.maps.InfoWindow({
+	        content : iwContent,
+	        removable : iwRemoveable
+	    });
+	    
+	    // 인포윈도우를 마커위에 표시합니다 
+	    infowindow.open(map, marker);
+	    
+	    // 지도 중심좌표를 접속위치로 변경합니다
+	    map.setCenter(locPositions);      
+	}  
+</script>
+		
+	<form name="tradeForm">
+		<input name="userName" type="hidden">
+		<input name="tradeNum" type="hidden">
+	</form>
+	<div id="tradeArray" class="/testClass"style="width:500px;height:70px;">
+		<table border="1">
+			<tr>
+				<td>
+					<input type="button" class="btn-click-me"style="width:500px;height:60px;" value="+" id="btnAddTrade">
+				</td>
+			</tr>
+		</table>
+		<div style="background-color: #f0f0f0;width:670px;height:60px;" >
+			
+			<div style="position:absolute; display:inline;visibility:hidden;" id="driverInfo_window">
+				<div style="width: 200px; height: 200px; position: absolute; display: inline;">
+					<img id="driverInfo_picture" style="size:inherit;">
+				</div>
+				<div style="width: 458px; position: absolute;display: inline; ">
+					<div>
+						<div style="height:70px; width: 90px; display: inline;">
+							grade :<span id="driverInfo_grade"></span>
+						</div>
+						<div style="height:70px; width: 348px ; display: inline;" align="right">
+							<span id="driverInfo_chat"><img src=""></span>
+							<span id="driverInfo_dial"><img src=""></span>
+						</div>
+					</div>
+					<div style="height:100px;">
+						<span id="driverInfo_memo" >testmemo here</span>
+					</div>
+				</div>
+			</div>
+				
+				
+			
+		</div>
+		
+	</div>
+	<!-- /container -->
+
+
+	<!-- footer  -->
+	<%include footer.ejs %>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{
+	"ConnectionLimit" : 2,
+	"host":"localhost",
+	"user":"user",
+	"password":"password",
+	"port":"0000",
+	"database":"dbname",
+	"debug": false
+}

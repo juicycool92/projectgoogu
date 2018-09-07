@@ -1,0 +1,100 @@
+<android.support.design.widget.NavigationView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/slideBar_menu"
+    android:layout_width="200sp"
+    android:layout_height="match_parent"
+    android:layout_gravity="end">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="200sp"
+        android:layout_height="match_parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout10"
+            android:layout_width="130sp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout7"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:layout_width="120sp"
+                android:layout_height="50sp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout7"
+            android:layout_width="130sp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:layout_width="120sp"
+                android:layout_height="50sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="130sp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.472">
+
+            <Button
+                android:layout_width="120sp"
+                android:layout_height="50sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/linearLayout9"
+            android:layout_width="130sp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/linearLayout8"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="@+id/linearLayout8"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout8">
+
+            <Button
+                android:layout_width="120sp"
+                android:layout_height="50sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.NavigationView>

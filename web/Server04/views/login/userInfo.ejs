@@ -1,0 +1,52 @@
+
+<head>
+<!-- header -->
+<% include ../head.ejs %>
+</head>
+
+<body role="document">
+	<!-- Fixed navbar -->
+	<%- include('../navBar.ejs',{login:login,userId:userId}) %>
+
+		<!--  이곳이 중앙에 들어갈 곳.  -->
+<form method="put" action ="/user/updateUser">
+	<table border="1">
+		<tr>
+			<td>ID</td>
+			<td><input type="text" name="userId" disabled="disabled" value='<%=userId%>'></td>
+		</tr>
+		<tr>
+			<td>PW</td>
+			<td><input name="inputpw"  type="password"></td>
+		</tr>
+		<tr>
+			<td>PW-re</td>
+			<td><input name="confirmPw"  type="password"></td>
+		</tr>
+		<tr>
+			<td>NAME</td>
+			<td><input type="text" name="userName"></td>
+		</tr>
+		<tr>
+			<td>ADDRESS</td>
+			<td>몰라시발 아귀차너</td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center">
+			<br/>		
+			<input type="submit" value="바꾸기 고고씽">
+		</tr>
+	</table>
+	</form>
+	<form method="post" action="/user/requestDriver">
+		<input type="hidden" name="userId" value='<%=userId%>'>
+		<input type="submit" value="REQUEST TO PROMOTE DRIVER RANK">
+	</form>
+	<!-- /container -->
+
+
+	<!-- footer  -->
+	<%include ../footer.ejs %>
+
+</body>
+</html>

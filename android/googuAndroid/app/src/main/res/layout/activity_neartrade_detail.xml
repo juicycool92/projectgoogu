@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/NearTradeDetailActivity"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="300dp"
+    android:layout_height="400dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=
+            "이 레이아웃은 나중에
+       trade detail을 띄울곳"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선택한 거래번호 :"/>
+    <TextView
+        android:id="@+id/tvNearTradeDetail_tradeNum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="번호"/>
+
+</LinearLayout>

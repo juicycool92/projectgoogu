@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en">
+
+<head>
+<!-- header -->
+<%include ../head.ejs %>
+</head>
+
+<body role="document">
+	<!-- Fixed navbar -->
+	<%- include('../navBar.ejs',{login:login,userId:userId}) %>
+	<script>
+	$(document).ready(function(){
+		<% if(!tradeList){ %>
+		$('#tradeListTable2').append('srtet');
+		<%}else{
+			for(var i = 0 ; i < tradeList.trade.length ; i++){%>
+			$('#tradeListTable').append('<tr height="58"><td width="100px" style="word-break:break-all"><%=tradeList.trade[i].tradeNum%>	</td><td width="330px" style="word-break:break-all"><%=tradeList.trade[i].tradeName%></td><td width="170px" style="word-break:break-all"><%=tradeList.trade[i].tradeState%></td><td><input type="button" onclick="getMyTradeDetail(<%=tradeList.trade[i].tradeNum%>)"></td></tr>');
+			console.log('<tr height="58"><td width="100px" style="word-break:break-all"><%=tradeList.trade[i].tradeNum%>	</td><td width="330px" style="word-break:break-all"><%=tradeList.trade[i].tradeName%></td><td width="170px" style="word-break:break-all"><%=tradeList.trade[i].tradeState%></td><td><input type="button" onclick="getMyTradeDetail(<%=tradeList.trade[i].tradeNum%>)"></td></tr>');
+			<%}%>
+			$('#curPage').append(<%=curPage%>);
+			$('#totPage').append(<%=totPage-1%>);
+		<%}%>
+	});
+	</script>
+	
+	<div class="container theme-showcase" role="main">
+
+		<!--  이곳이 중앙에 들어갈 곳.  -->
+	
+	<script>
+
+	////code abandon for temp
+	//driverInfo()
+	//createTradeList();
+	
+	function getMyTradeDetail(tradeNum){
+		//window.location.href='/tradeListDetail';
+		var url = '/myTradeView';
+		var form = $('<form action="' + url + '" method="post">' +
+		  '<input type="text" name="tradeNum" value="' + tradeNum + '" />' +
+		  '</form>');
+		$('body').append(form);
+		form.submit();
+	}
+	function goLeft(curPage){
+		var result = parseInt(curPage)-1;
+		if(result>=0){
+			window.location.href='/tradeList?page='+result;
+		}
+		return;
+	}
+	function goRight(curPage,totPage){
+		console.log(typeof curPage+1 + "right"+typeof totPage+1);
+		var result = parseInt(curPage)+1;
+		if(result !==totPage){
+			window.location.href='/tradeList?page='+result;
+		}
+	}
+	</script>
+	<div align="center">
+		<div id="tradeListTable2"style="background-color: #f0f0f0;width:500px;height:60px;display: inline;"  >
+			<table border = 1 id="tradeListTable">
+				<tr height="58">
+					<td width="100px" style="word-break:break-all">상품 번호
+					</td>
+					<td width="330px" style="word-break:break-all">
+						<label>상품명</label>
+					</td>
+					<td width="170px" style="word-break:break-all">상태
+					</td>
+					<td>
+						상세보기
+					</td>
+				</tr>
+			</table>
+		</div>
+		<div align="center" style="display: inline;">
+			<label onclick="goLeft(<%=curPage%>)"> <- </label>
+			<label id="curPage"></label> / <label id="totPage"></label>
+			<label onclick="goRight(<%=curPage%>,<%=totPage%>)"> -> </label>
+		</div>
+		
+	
+		
+	</div>
+	
+	
+	<!-- /container -->
+
+
+	<!-- footer  -->
+	<%include ../footer.ejs %>
+
+</body>
+</html>
+

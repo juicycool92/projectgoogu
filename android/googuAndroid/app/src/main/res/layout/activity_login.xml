@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    tools:context="kr.googu.googu.activities.LoginActivity">
+
+    <EditText
+        android:id="@+id/login_et_userId"
+        android:layout_width="350sp"
+        android:layout_height="50sp"
+        android:layout_above="@+id/login_et_userPw"
+        android:layout_alignLeft="@+id/login_et_userPw"
+        android:layout_alignStart="@+id/login_et_userPw"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="아이디"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/login_et_userPw"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login" />
+
+    <EditText
+        android:id="@+id/login_et_userPw"
+        android:layout_width="350sp"
+        android:layout_height="50sp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:ems="10"
+        android:hint="비밀번호"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn_login"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login" />
+
+    <TextView
+        android:id="@+id/login_tv_flashMsg"
+        android:layout_width="370sp"
+        android:layout_height="30sp"
+        android:layout_alignLeft="@+id/login_et_userPw"
+        android:layout_alignStart="@+id/login_et_userPw"
+        android:layout_below="@+id/login_et_userPw"
+        android:layout_marginBottom="8dp"
+        android:text="sample text"
+        app:layout_constraintBottom_toTopOf="@+id/login_btn_login"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login" />
+
+    <Button
+        android:id="@+id/login_btn_login"
+        android:layout_width="370sp"
+        android:layout_height="50sp"
+
+        android:layout_above="@+id/login_btn_sign"
+        android:layout_alignEnd="@+id/login_et_userId"
+        android:layout_alignRight="@+id/login_et_userId"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="로그인"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.63" />
+
+    <Button
+        android:id="@+id/login_btn_sign"
+        android:layout_width="370sp"
+        android:layout_height="50sp"
+        android:layout_alignLeft="@+id/login_et_userPw"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/login_et_userPw"
+        android:layout_marginTop="20dp"
+        android:text="회원가입"
+        app:layout_constraintEnd_toEndOf="@+id/login_btn_login"
+        app:layout_constraintStart_toStartOf="@+id/login_btn_login"
+        app:layout_constraintTop_toBottomOf="@+id/login_btn_login" />
+
+
+
+</android.support.constraint.ConstraintLayout>

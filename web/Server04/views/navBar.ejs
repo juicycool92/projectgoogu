@@ -1,0 +1,42 @@
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Googu</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="/">홈</a></li>
+            <li><a href="http://bootstrapk.com/examples/theme/#about">지도보기</a></li>
+            <li><a href="http://bootstrapk.com/examples/theme/#contact">등록하기</a></li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">설정 <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+             	 <% if(!login){ -%>
+                <li><a href="/login">로그인</a></li>
+                <li><a href="/sign">회원가입</a></li>
+                <% }else{ -%>
+                <li>  log in as <%=userId %> </li>
+                <li><a href="/logout">로그아웃</a></li>
+                <li><a href="/user">회원정보 변경</a></li>
+                <li><a href="/tradeList?page=0">내 거래</a></li>
+                <% } %>
+                <li><a href="http://bootstrapk.com/examples/theme/#">드라이브홈</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">고객센터</li>
+                <li><a href="http://bootstrapk.com/examples/theme/#">공지사항</a></li>
+                <li><a href="http://bootstrapk.com/examples/theme/#">이용약관</a></li>
+                <li><a href="http://bootstrapk.com/examples/theme/#">문의하기</a></li>
+                <li><a href="http://bootstrapk.com/examples/theme/#">자주하는 질문</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <!--/.nav-collapse -->
+      </div>
+    </nav>

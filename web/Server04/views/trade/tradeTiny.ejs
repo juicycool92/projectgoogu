@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en">
+<head>
+	<!-- header -->
+<% include ../head.ejs %>
+<link href="/stylesheets/test.css" rel="stylesheet">
+<script>$(document).ready(function(){ $("#btnTradeList").click(function(){ window.open("./tradeList?values=?", "PopupWindow", "width=600,height=600,scrollbars=yes,resizable=no"); });</script>
+
+</head>
+<body>
+<div class="testDiv" align="right" style="background-color:black">
+<table border = 1>
+	<tr class="testTr">
+		<td class="testTd" id="box1"></td>
+		<td class="testTd" id="box2"></td>
+	</tr>
+	<tr class="testTr">
+		<td class="testTd" id="box3"></td>
+		<td class="testTd" id="box4"></td>
+	</tr>
+</table>
+<button style="height: 20px; width: 50px" onclick="closeOverlay()"></button>
+
+
+</div>
+</body>

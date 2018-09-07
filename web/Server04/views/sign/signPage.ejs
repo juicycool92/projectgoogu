@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../head.ejs %>
+
+<link rel="stylesheet"
+	href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+<script src="//apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="jqueryui/style.css">
+<script>
+	$(function() {
+		$("#datepicker").datepicker();
+	});
+
+	function check(){
+		if(fom.userId.value==""){
+			alert('필수란이 공백입니다.');
+			fom.userId.focus();return false;
+		}else if(fom.userPw.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userPw.focus();return false;
+		}else if(fom.userPw_re.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userPw_re.focus();return false;
+		}else if(fom.userName.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userName.focus();return false;
+		}else if(fom.userBirth.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userBirth.focus();return false;
+		}else if(fom.userAddress.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userAddress.focus();return false;
+		}else if(fom.userMail.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userMail.focus();return false;
+		}else if(fom.userPhone.value == ""){
+			alert('필수란이 공백입니다.');
+			fom.userPhone.focus();return false;
+		}else if(fom.agreement1.checked==false){
+			alert('약관 동의를 해야합니다');
+			return false;
+		}else if(fom.agreement2.checked==false){
+			alert('약관 동의를 해야합니다');
+			return false;
+		}else if(fom.agreement3.checked==false){
+			alert('약관 동의를 해야합니다');
+			return false;
+		}else if(fom.agreement4.checked==false){
+			alert('약관 동의를 해야합니다');
+			return false;
+		}else{
+			return true;
+		}
+	}
+</script>
+
+</head>
+<body>
+	<form method="post" action="/sign" >
+	<!-- name="fom" onsubmit="return check()"  -->
+		<label><%=message%></label>
+		<table >
+			<tr>
+				<td>ID</td>
+				<td><input type="text" name="userId"></td>
+			</tr>
+			<tr>
+				<td>PW</td>
+				<td><input type="password" name="userPw"></td>
+			</tr>
+			<tr>
+				<td>re_PW</td>
+				<td><input type="password" name="userPw_re"></td>
+			</tr>
+			<tr>
+				<td>NAME</td>
+				<td><input type="text" name="userName"></td>
+			</tr>
+			<tr>
+				<td>BIRTH</td>
+				<td><input type="text" id="datepicker" name="userBirth"></td>
+			</tr>
+			<tr>
+				<td>Adddress</td>
+				<td><input type="text" name="userAddress"></td>
+			</tr>
+			<tr>
+				<td>EMAIL</td>
+				<td><input type="email" name="userMail"></td>
+			</tr>
+			<tr>
+				<td>PHONE</td>
+				<td><input type="tel" name="userPhone"></td>
+			</tr>
+
+		</table>
+		<table>
+		<tr><td width="110dp" colspan="2">약관1 동의하기 <input type="checkbox" name="agreement1"></td></tr>
+		<tr><td width="110dp" colspan="2">약관2 동의하기 <input type="checkbox" name="agreement2"></td></tr>
+		<tr><td width="110dp" colspan="2">약관3 동의하기 <input type="checkbox" name="agreement3"></td></tr>
+		<tr><td width="110dp" colspan="2">약관4 동의하기 <input type="checkbox" name="agreement4"></td></tr>
+		<tr><td width="110dp" align="center"><input type="submit" value="가입하기"></td><td width="110dp" align="center"><input type="button" value="취소" ></td></tr>
+		</table>
+	</form>
+
+</body>
+	<% include ../footer.ejs %>

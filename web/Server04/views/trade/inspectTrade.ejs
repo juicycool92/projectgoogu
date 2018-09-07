@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en" style="width: 600px; ">
+<head>
+	<!-- header -->
+<% include ../head.ejs %>
+<script>
+$(document).ready(function(){
+	<% if(!auth || auth===false || result === null){ %>
+		alert('잘못된 접근입니다.');
+		window.close();
+	<%}else{%>
+		$("#driverGrade").append('<%=result.driverGrade%>');	
+		$("#driverMemo").append('<%=result.driverMemo%>');
+		$("#driverName").append('<%=result.driverName%>');
+		$("#tradeNum").append('<%=result.tradeNum%>');
+		$("#tradeName").append('<%=result.tradeName%>');
+		
+	<%}%>
+	$("#brnAccept").on("click",function(){
+		 $.ajax({
+				type:"POST",
+				url:"http://localhost:8080/tradeResponseOk",
+				data:JSON.stringify({"tradeNum" :'<%=result.tradeNum%>'}),
+				contentType:'application/json',
+				success:function(results){
+					console.log(results.result);
+					alert('요청을 수락했습니다.');
+					window.close();
+				},
+				error:function(e){
+					alert('error: '+e);
+				}
+		 });
+	});
+	$("#brnDecline").on("click",function(){
+		 $.ajax({
+				type:"POST",
+				url:"http://localhost:8080/tradeResponseNo",
+				data:JSON.stringify({"tradeNum" :<%=result.tradeNum%>}),
+				contentType:'application/json',
+				success:function(results){
+					console.log(results.result);
+					alert('요청을 거절했습니다.');
+					window.close();
+				},
+				error:function(e){
+					alert('error: '+e);
+				}
+		 });
+	});
+});
+
+</script>
+
+</head>
+<body>
+	<div>
+		<div>
+			<div style="display:inline;" id="driverInfo_window">
+				<div style="width: 200px; height: 200px; display: inline;">
+					<img id="driverInfo_picture" style="size:inherit;">
+				</div>
+				<div style="width: 458px;display: inline; ">
+					<div>
+						<div style="height:70px; width: 90px; display: inline;">
+							grade :<span><label id="driverGrade"></label></span>
+						</div>
+						<div style="height:70px; width: 348px ; display: inline;" align="right">
+							<span ><label id="driverInfo_chat"></label><img src=""></span>
+							<span ><label id="driverInfo_dial"></label><img src=""></span>
+						</div>
+					</div>
+					<div style="height:100px;">
+						<span><label id="driverMemo"></label></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<label id="driverName"></label>님이 </br>
+			거래번호 <label id="tradeNum"></label></br>
+			상품명 <label id="tradeName"></label></br>
+			을 배송신청 했습니다.</br>
+		</div>
+		<div>
+			<button id="brnAccept">수락</button>
+			<button id="brnDecline">거절</button>
+		</div>
+	</div>
+</body>

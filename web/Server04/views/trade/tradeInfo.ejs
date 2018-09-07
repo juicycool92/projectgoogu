@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en">
+<head>
+	<!-- header -->
+<% include ../head.ejs %>
+
+<script>
+
+$(document).ready(function(){
+
+	$(function(){
+		$.ajax({
+			type:"POST",
+			url:"http://localhost:8080/tradeListDetail",
+			data:JSON.stringify({"tradeNum" : '<%=tradeNum%>'}),
+			contentType:'application/json',
+			success:function(requestJson){
+				var fieldVal = JSON.parse(requestJson);
+				
+				$('#product_id').text(fieldVal.itemName);
+			 	$('#product_cost').text(fieldVal.itemCost);
+ 				$('#product_size').text(fieldVal.itemSize);
+			 	$('#product_weight').text(fieldVal.itemWeight);
+			 	$('#product_memo').text(fieldVal.itemMemo);
+ 	
+			 	$('#product_sender_Name').text(fieldVal.itemSender_name);
+ 				$('#product_send_lat').text(fieldVal.itemSender_lat);
+ 				$('#product_send_lon').text(fieldVal.itemSender_lon);
+ 				$('#product_send_time').text(fieldVal.itemSender_time);
+			 	$('#product_receiver_lat').text(fieldVal.itemReceiver_lat);
+ 				$('#product_receiver_lon').text(fieldVal.itemReceiver_lon);
+ 				$('#product_receiver_time').text(fieldVal.itemReceiver_time );
+			},
+			error:function(e){
+			}
+   		});
+	});
+ 	$('#requestDeliver').click(function(){
+ 		$.ajax({
+			type:"PUT",
+			url:"http://localhost:8080/tradeRequestAccept",
+			data:JSON.stringify({"tradeNum" : '<%=tradeNum%>',"driverId":'<%=userId%>'}),
+			contentType:'application/json',
+			success:function(result){
+				if(result===false){
+					alert('request failed');
+					wondow.close();
+				}else{
+					alert('요청을 보냈습니다. 신청목록에서 확인 할 수 있습니다.');
+				}
+			},
+			error:function(e){
+			}
+   		});	
+ 	});
+});
+
+</script>
+
+</head>
+	<table border="1">
+		<tr>
+			<td>상품 이름</td>
+			<td id="product_id"></td>
+		</tr>
+		<tr>
+			<td>의뢰 비용</td>
+			<td id="product_cost"></td>
+		</tr>
+		<tr>
+			<td>상품 사이즈</td>
+			<td id="product_size"></td>
+		</tr>
+		<tr>
+			<td>상품 무개</td>
+			<td id="product_weight"></td>
+		</tr>
+		<tr>
+			<td>주의사항</td>
+			<td id="product_memo"></td>
+		</tr>
+	</table>
+	
+	<table border=1>
+		<tr>
+			<td>배송인</td>
+			<td id="product_sender_Name"></td>
+		</tr>
+		<tr>
+			<td>상품 픽업 위치(lat)</td>
+			<td id="product_send_lat"></td>
+		</tr>
+		<tr>
+			<td>상품 픽업 위치(lon)</td>
+			<td id="product_send_lon"></td>
+		</tr>
+		<tr>
+			<td>상품 픽업 희망 시간</td>
+			<td id="product_send_time"></td>
+		</tr>
+		<tr>
+			<td>수령지(lat)</td>
+			<td id="product_receiver_lat"></td>
+		</tr>
+		<tr>
+			<td>수령지(lon)</td>
+			<td id="product_receiver_lon"></td>
+		</tr>
+		<tr>
+			<td>도착 희망 시간</td>
+			<td id="product_receiver_time"></td>
+		</tr>
+	</table>
+	<% if(isDriver===true){ %>
+	<button id="requestDeliver">배송신청</button>
+	
+	<%}%>
+	   <button onclick="alert('준비중')">애누리 신청</button>
+</div>
+</body>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="420sp"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="8sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!-- 상품이름 이미지 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="109dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="132dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="30sp"
+                        android:text="상품이름" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etProductName"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="필수" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="100sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="상품 이미지" />
+
+                    <ImageButton
+                        android:id="@+id/writeTrade_imageBtnProductImage"
+                        android:layout_width="60sp"
+                        android:layout_height="60sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 보내는새끼 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="186dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="보내는이" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etSenderName"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="필수입력" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="200sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="보내는이 연락처" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/writeTrade_etSenderPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:hint="필수입력" />
+
+                        <CheckBox
+                            android:id="@+id/writeTrade_checkBoxIsSenderUserSafe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="안심번호 사용" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="40sp"
+                        android:layout_height="30sp"
+                        android:text="출발지" />
+
+                    <Button
+                        android:id="@+id/writeTrade_btnSenderAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="선택" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/writeTrade_etSenderAdd1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="주소1" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etSenderAdd2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="주소2" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etSenderAdd3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="선택" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:text="출발희망 시간" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp">
+
+                    <EditText
+                        android:id="@+id/writeTrade_etSenderTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="고츄" />
+
+                    <Button
+                        android:id="@+id/writeTrade_btnSenderTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="선택" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <!-- 받는새끼 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="186dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="보내는이" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etReceiverName"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="필수입력" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="200sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="보내는이 연락처" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <EditText
+                            android:id="@+id/writeTrade_etReceiverPhone"
+                            android:layout_width="match_parent"
+                            android:layout_height="40sp"
+                            android:hint="필수입력" />
+
+                        <CheckBox
+                            android:id="@+id/writeTrade_checkBoxIsReceiverUserSafe"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="안심번호 사용" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="40sp"
+                        android:layout_height="30sp"
+                        android:text="도착지" />
+
+                    <Button
+                        android:id="@+id/writeTrade_btnReceiverAddress"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="선택" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:id="@+id/writeTrade_etReceiverAdd1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="주소1" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etReceiverAdd2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="주소2" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etReceiverAdd3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40sp"
+                        android:hint="선택" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30sp"
+                    android:text="도착희망 시간" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40sp">
+
+                    <EditText
+                        android:id="@+id/writeTrade_etReceiverTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="고츄" />
+
+                    <Button
+                        android:id="@+id/writeTrade_btnReceiverTime"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="선택" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- 추가 인적사항 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="100sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="무개" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etProductWeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="고츄" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="100sp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="수량" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etProductQuantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:hint="고츄" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 메모 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="70sp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="30sp"
+                        android:text="메모" />
+
+                    <EditText
+                        android:id="@+id/writeTrade_etMemo"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="고츄" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp"
+        android:layout_marginTop="8sp"
+        android:layout_marginBottom="8sp"
+        android:layout_marginLeft="8sp"
+        android:layout_marginRight="8sp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/writeTrade_btnOkay"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="확인" />
+
+        <Button
+            android:id="@+id/writeTrade_btnCancle"
+            android:layout_marginLeft="8sp"
+            android:layout_marginRight="8sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="취소" />
+
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "632659130131",
+    "firebase_url": "https://googuandroid.firebaseio.com",
+    "project_id": "googuandroid",
+    "storage_bucket": "googuandroid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:632659130131:android:ae750c2a0e48ca09",
+        "android_client_info": {
+          "package_name": "kr.googu.googu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "632659130131-lg3bf34lgsuurku6rvke9akth5rf55aj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kr.googu.googu",
+            "certificate_hash": "27858121363a844ceec5800530e5b0797d02da92"
+          }
+        },
+        {
+          "client_id": "632659130131-4l317arj4g7dt89103oi6mef0lfo356h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApQM5C-yfeuvv0_YFaAIv4FgerBsU7mMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "632659130131-4l317arj4g7dt89103oi6mef0lfo356h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

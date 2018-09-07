@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/toolbarMapActive"
+        layout="@layout/tool_bar" />
+
+
+    <android.support.v4.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            layout="@layout/map_bar"/>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/testNevView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            >
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <Button
+                    android:text="시발"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:text="시발2"
+                    android:layout_width="100sp"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+        </android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout>
+</LinearLayout>
+

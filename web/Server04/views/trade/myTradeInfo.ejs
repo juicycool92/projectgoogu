@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en" style="width: 600px; ">
+<head>
+	<!-- header -->
+<% include ../head.ejs %>
+
+<script>
+	
+$(document).ready(function(){
+	<% if(login===null || userId===null || auth===null || value === null || value.tradeState===null){ %>
+		alert('잘못된 접근입니다.');
+		window.history.go(-1);
+	<%}else{%>
+	
+	$("#tradeState").append('<%=value.tradeState%>');
+	$("#tradeUpdateTime").append('<%=value.tradeUpdateTime%>');
+	$("#tradeSenderName").append('<%=value.tradeSenderName%>');
+	$("#tradeSenderLoc").append('<%=value.tradeSenderLoc%>');
+	$("#tradeSenderTime").append('<%=value.tradeSenderTime%>');
+	$("#tradeReceiverName").append('<%=value.tradeReceiverName%>');
+	$("#tradeReceiverLoc").append('<%=value.tradeReceiverLoc%>');
+	$("#tradeReceiverPhone").append('<%=value.tradeReceiverPhone%>');
+	$("#tradeNum").append('<%=value.tradeNum%>');
+	$("#tradeName").append('<%=value.tradeName%>');
+	$("#tradeCost").append('<%=value.tradeCost%>');
+	$("#tradeWeight").append('<%=value.tradeWeight%>');
+	$("#tradeSize").append('<%=value.tradeSize%>');
+	$("#tradeMemo").append('<%=value.tradeMemo%>');
+	$("#tradeDriverName").append('<%=value.tradeDriverName%>');
+	$(".tradeNum").attr("value",'<%=value.tradeNum%>');
+	console.log('hey');
+	
+	
+	<%if(auth === 'sender'){ %>
+	<%	if(value.tradeState === '0'){%>
+		$("#btnModify").css('visibility','visible');
+	
+	<%	}else if(value.tradeState === '1'){%>
+		$("#btnReviewRequest").css('visibility','visible');
+	<%	}%>
+	<%}else if( auth === 'driver'){%>
+		$("#tradeDriverName").append('<%=userId%>');
+	<%}%>
+	
+	$("#btnReviewRequest").on("click",function(){
+		window.open("","popup_window", "width=500, height=300, scrollbars=no");
+		$("#reviewReq").submit();
+	});
+	<%}%>
+});
+function goModify(){
+	console.log('go modify');
+}
+function reviewRequest(){
+	console.log('inspectDriver');
+	
+}
+</script>
+
+	
+
+</head>
+	
+
+<body style="width: 100%;">
+	<div style="position:fixed;width: 100%;" align="center">
+		<div align="right">
+			<table border="1">
+				<tr>
+					<td>거래상태</td>
+					<td>최종 업데이트</td>
+				</tr>
+				<tr>
+					<td id="tradeState" style="height: 7px; "></td>
+					<td id="tradeUpdateTime"></td>
+				</tr>
+			</table>
+		</div>
+		<div style="width: 49%; display:inline-block;">
+			<label>배송정보</label>
+			<table style="width: 100%" border="1">
+				<tr>
+					<td style="width: 35%; ">발신인 명</td>
+					<td style="width: 65%; " id="tradeSenderName"></td>
+				</tr>
+				<tr>
+					<td>픽업 장소</td>
+					<td id="tradeSenderLoc"></td>
+				</tr>
+				<tr>
+					<td>픽업 시간</td>
+					<td id="tradeSenderTime"></td>
+				</tr>
+				<tr>
+					<td>수신인 명</td>
+					<td id="tradeReceiverName"></td>
+				</tr>
+				<tr>
+					<td>수신인 주소</td>
+					<td id="tradeReceiverLoc"></td>
+				</tr>
+				<tr>
+					<td>수신인 연락처</td>
+					<td id="tradeReceiverPhone"></td>
+				</tr>
+			</table>
+		</div>
+		<div  style="width: 49%; display:inline-block ;">
+			<label>상품 정보</label>
+			<table border="1" style="width: 100%; ">
+				<tr>
+					<td>상품번호</td>
+					<td style="width:75%;" id="tradeNum"></td>
+				</tr>
+				<tr>
+					<td>상품명</td>
+					<td id="tradeName"></td>
+				</tr>
+				<tr>
+					<td>청구비용</td>
+					<td id="tradeCost"></td>
+				</tr>
+				<tr>
+					<td>무개</td>
+					<td id="tradeWeight"></td>
+				</tr>
+				<tr>
+					<td>사이즈</td>
+					<td id="tradeSize"></td>
+				</tr>
+				<tr>
+					<td>주의사항</td>
+					<td id="tradeMemo"></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+		<div align="center"   style="width: 50%; height:20%; display:inline ;">
+			<label>딜리버 정보</label>
+			<table style="width: 100%;" border="1">
+				<tr>
+					<td>딜리버 이름</td>
+					<td id="tradeDriverName" style="width: 65%;"></td>
+				</tr>
+				<tr>
+					<td colspan="2"><label id="driverPage">홈페이지 전화 문자 </label></td>
+					
+				</tr>
+			</table>
+		</div>
+		<div >
+			<button id="btnReviewRequest" onclick="reviewRequest()"style="visibility:collapse;">입찰 확인하기 </button>
+			<button id="btnModify" onclick="goModify()"style="visibility:collapse;">수정하기</button> 
+			<button onclick="<script>window.close()</script>">닫기</button>
+		</div>
+		<form id="reviewReq" method="post" action="./reviewRequest" target="popup_window">
+			<input type="hidden" class="tradeNum" id="tradeNum" name="tradeNum" value="고츄">
+		</form>
+	</div></body>

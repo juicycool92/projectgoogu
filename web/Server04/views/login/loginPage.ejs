@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://bootstrapk.com/examples/theme/ -->
+<html lang="en">
+
+<head>
+<!-- header -->
+<%include ../head.ejs %>
+</head>
+
+<body role="document">
+	<!-- Fixed navbar -->
+	<%- include('../navBar.ejs',{login:'false',userId:'null'}) %> 
+
+
+	<div class="container theme-showcase" role="main">
+
+		<!--  이곳이 중앙에 들어갈 곳.  -->
+		<form method="post" action="/login">
+		<input type="text" name="userId">
+		<br>
+		<input type="password" name="userPw">
+		<br>
+		<label><%=message%></label>
+		<br>
+		<input type="submit">
+		</form>
+		
+	</div>
+	<!-- /container -->
+
+
+	<!-- footer  -->
+	<%include ../footer.ejs %>
+
+</body>
+</html>
+

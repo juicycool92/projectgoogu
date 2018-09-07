@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <include head.ejs %>
+  </head>
+  <body>
+  <% if(login==false){ -%>
+   <li><a href="./login">login</a></li>
+   <li>no account yet? <a href="./sign">Sign in</a></li>
+   <% }else { -%>
+   <li><a href="./logout">logout</a></li>
+   <% } %>
+   <li>List</li>
+   <li>Write</li>
+  <include footer.ejs%>
+</html>

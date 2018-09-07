@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="160sp"
+    android:animateLayoutChanges="true"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="16sp"
+        android:layout_marginTop="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/driverProfile_ibAddFavorate"
+            android:layout_width="30sp"
+            android:layout_height="30sp" />
+        <ImageButton
+            android:id="@+id/driverProfile_ibGoDriverHome"
+            android:layout_width="30sp"
+            android:layout_height="30sp" />
+
+        <ImageButton
+            android:id="@+id/driverProfile_ibClose"
+            android:layout_width="30sp"
+            android:layout_height="30sp" />
+
+
+
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/driverProfile_ivDriverProfile"
+        android:layout_width="80sp"
+        android:layout_height="80sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginLeft="16sp"
+        android:layout_marginTop="16sp"
+        android:src="@color/cardview_dark_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/driverProfile_tvDriverName"
+        android:layout_width="80sp"
+        android:layout_height="38sp"
+        android:layout_marginBottom="16sp"
+        android:layout_marginStart="16sp"
+        android:layout_marginLeft="16sp"
+        android:text="name"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/driverProfile_tvDriverRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="124sp"
+        android:layout_marginStart="104sp"
+        android:layout_marginLeft="104sp"
+        android:layout_marginTop="8sp"
+        android:text="DriverPoint"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.888" />
+
+    <ImageButton
+        android:id="@+id/driverProfile_ivCallDriver"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_marginBottom="72sp"
+        android:layout_marginRight="16sp"
+        android:layout_marginTop="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
+
+    <TextView
+        android:id="@+id/driverProfile_tvDriverContext"
+        android:layout_width="198sp"
+        android:layout_height="58sp"
+        android:layout_marginBottom="16sp"
+        android:layout_marginRight="16sp"
+        android:text="detail about this driver info"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</android.support.constraint.ConstraintLayout>
