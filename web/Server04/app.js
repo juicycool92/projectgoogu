@@ -1,4 +1,4 @@
-var express=require('express');
+﻿var express=require('express');
 var app = express();
 
 var fs = require('fs');
@@ -13,10 +13,10 @@ var serviceAccount = require('./config/serviceAccountKey.json');
 
 admin.initializeApp({
 	  credential: admin.credential.cert(serviceAccount),
-	  databaseURL: "https://<DATABASE_NAME>.firebaseio.com"
+	  databaseURL: ""
 	});
 
-var registrationToken = 'dvlBMYnt_-Q:APA91bFw9PEW7tMmCK55f8lYMMuA6jfl4nGBh-GXItC0VYDWJPG-ZEjPof0r-yTfNtpTPHqd2pYqe1oUpK2GwARNi2gVWHAOkw7e1r4pCsXWa-bgNnObiDJUxlQbl0ODAqSJsAxdHWXW';
+var registrationToken = '';
 var payload = {    
 		notification: {
 		    title: "테스트",
@@ -77,7 +77,7 @@ var pool = sql.createPool(SQLinfo);
 //sql manage
 
 app.use(session({
-	secret:'keyboard cat multa',
+	secret:'k'
 	resave : true,
 	saveUninitialized: true
 }));
